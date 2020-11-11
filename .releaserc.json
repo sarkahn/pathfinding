@@ -4,9 +4,9 @@
     ["@semantic-release/commit-analyzer", { "preset": "angular" }],
     "@semantic-release/release-notes-generator",
     ["@semantic-release/changelog", { "preset": "angular" }],
-    ["@semantic-release/npm", { "npmPublish": false, "pkgRoot": "Packages/com.sark.tiled_camera" }],
+    ["@semantic-release/npm", { "npmPublish": false, "pkgRoot": "Packages/com.sark.pathfinding" }],
     ["@semantic-release/git", {
-      "assets": ["Packages/com.sark.tiled_camera/package.json", "CHANGELOG.md"],
+      "assets": ["Packages/com.sark.pathfinding/package.json", "CHANGELOG.md"],
       "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
     }],
     "@semantic-release/github" 

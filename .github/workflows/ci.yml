@@ -59,7 +59,7 @@ jobs:
         fi
         git push -f -u origin upm
       env:
-        PKG_ROOT: Packages/com.sark.tiled_camera
+        PKG_ROOT: Packages/com.sark.pathfinding
     - name: Create upm git tag
       if: steps.semantic.outputs.new_release_published == 'true'
       run: |
