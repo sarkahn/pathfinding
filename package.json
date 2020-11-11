@@ -1,0 +1,42 @@
+{
+  "name": "com.sark.pathfinding",
+  "displayName": "Pathfinding",
+  "version": "0.0.0",
+  "unity": "2020.2",
+  "unityRelease": "0b10",
+  "description": "A simple generic solution for pathfinding that works in jobs and burst.",
+  "keywords": [
+    "pathfinding",
+    "astar",
+    "dijkstra",
+    "burst"
+  ],
+  "scopedRegistries": [
+    {
+      "name": "package.openupm.com",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.openupm"
+      ]
+    }
+  ],
+  "dependencies": {
+    "com.unity.mathematics": "1.1.0",
+    "com.unity.collections": "0.14.0-preview.16",
+    "com.unity.burst": "1.3.7",
+    "com.unity.jobs": "0.7.0-preview.17",
+    "com.sark.common": "0.2.0"
+  },
+  "author": {
+    "name": "Sark",
+    "email": "sarkahn@gmail.com",
+    "url": "https://github.com/sarkahn/"
+  },
+  "samples": [
+    {
+      "displayName": "Demo",
+      "description": "A fancy interactive demo. Requires URP.",
+      "path": "Samples~/Demo"
+    }
+  ]
+}
