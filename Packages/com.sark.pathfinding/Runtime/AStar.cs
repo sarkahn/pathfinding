@@ -5,6 +5,7 @@ using Sark.Common.NativeListExtensions;
 using System;
 using Unity.Burst;
 using UnityEditor;
+using UnityEngine.Profiling;
 
 namespace Sark.Pathfinding
 {
@@ -32,6 +33,7 @@ namespace Sark.Pathfinding
             where Map : IPathingMap<T>
         {
             _frontier.Enqueue(start, 0);
+
             _costs[start] = 0;
 
             while (_frontier.Length > 0)

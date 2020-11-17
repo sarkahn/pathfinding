@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/SpamPathfindingProfiler/SpamPathfindingProfiler.unity
-    guid: 5425ae514833b5d4d8ff1dd9a2f6aecd
+    path: Assets/RuntimeProfiling/VeryLongPathProfiling.unity
+    guid: abadba5c619f0ab479cb261df6cca931
   m_configObjects: {}

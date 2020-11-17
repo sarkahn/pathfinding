@@ -3,6 +3,7 @@ using Unity.Jobs;
 using Unity.Mathematics;
 
 using Sark.Common.GridUtil;
+using UnityEngine.Profiling;
 
 namespace Sark.Pathfinding.Samples
 {
@@ -82,6 +83,7 @@ namespace Sark.Pathfinding.Samples
         public FixedList64<int> GetAvailableExits(int pIndex)
         {
             int2 p = IndexToPos(pIndex);
+
             var neighbours = new FixedList64<int>();
 
             for (int i = 0; i < Grid2D.Directions4Way.Length; ++i)
@@ -123,6 +125,19 @@ namespace Sark.Pathfinding.Samples
         public int PosToIndex(int x, int z) => Grid2D.PosToIndex(x, z, _size.x);
         public int2 IndexToPos(int i) => Grid2D.IndexToPos(i, _size.x);
 
+        public static (TestMapInt, int, int) GetMapWithObstacles(int w, int h, Allocator allocator)
+        {
+            var map = new TestMapInt(w, h, allocator);
+
+            int x = w / 2;
+            for (int y = 0; y < h - 2; ++y)
+                map.SetTile(x, y, 1);
+
+
+            int start = map.PosToIndex(0, 0);
+            int end = map.PosToIndex(w - 1, 0);
+            return (map, start, end);
+        }
     }
 
     public struct TestMapInt2 : IPathingMap<int2>, INativeDisposable
