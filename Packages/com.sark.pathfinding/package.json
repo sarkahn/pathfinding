@@ -1,7 +1,7 @@
 {
   "name": "com.sark.pathfinding",
   "displayName": "Pathfinding",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "unity": "2020.2",
   "unityRelease": "0b10",
   "description": "A simple generic solution for pathfinding that works in jobs and burst.",
