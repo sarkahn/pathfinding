@@ -1,3 +1,10 @@
+## [0.0.4](https://github.com/sarkahn/pathfinding/compare/v0.0.3...v0.0.4) (2020-11-17)
+
+
+### Bug Fixes
+
+* Forgot to update burst dependency ([c77e52f](https://github.com/sarkahn/pathfinding/commit/c77e52f6bad23b87519a530e02ed3625308a05f0))
+
 ## [0.0.3](https://github.com/sarkahn/pathfinding/compare/v0.0.2...v0.0.3) (2020-11-17)
 
 
