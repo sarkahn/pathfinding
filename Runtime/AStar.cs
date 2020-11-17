@@ -21,12 +21,14 @@ namespace Sark.Pathfinding
         NativePriorityQueue<T> _frontier;
         NativeHashMap<T,T> _parents;
         NativeHashMap<T,int> _costs;
+        NativeList<T> _neighbours;
 
         public AStar(int len, Allocator allocator)
         {
             _frontier = new NativePriorityQueue<T>(len, allocator);
             _parents = new NativeHashMap<T, T>(len, allocator);
             _costs = new NativeHashMap<T, int>(len, allocator);
+            _neighbours = new NativeList<T>(8, allocator);
         }
 
         public void FindPath<Map>(Map map, T start, T end, NativeList<T> output) 
@@ -44,11 +46,12 @@ namespace Sark.Pathfinding
                 if (curr.Equals(end))
                     break;
 
-                var neighbours = map.GetAvailableExits(curr);
+                _neighbours.Clear();
+                map.GetAvailableExits(curr, _neighbours);
 
-                for (int i = 0; i < neighbours.Length; ++i)
+                for (int i = 0; i < _neighbours.Length; ++i)
                 {
-                    var next = neighbours[i];
+                    var next = _neighbours[i];
 
                     int newCost = _costs[curr] + map.GetCost(curr, next);
 
@@ -104,6 +107,7 @@ namespace Sark.Pathfinding
             _frontier.Dispose(inputDeps);
             _parents.Dispose(inputDeps);
             _costs.Dispose(inputDeps);
+            _neighbours.Dispose(inputDeps);
             return inputDeps;
         }
 
@@ -112,6 +116,7 @@ namespace Sark.Pathfinding
             _frontier.Dispose();
             _parents.Dispose();
             _costs.Dispose();
+            _neighbours.Dispose();
         }
     }
 }
