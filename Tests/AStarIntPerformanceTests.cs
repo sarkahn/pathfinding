@@ -70,6 +70,7 @@ public class AStarIntPerformanceTests
             .Run();
     }
 
+
     [BurstCompile]
     struct PathJob : IJob
     {
