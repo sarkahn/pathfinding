@@ -80,11 +80,9 @@ namespace Sark.Pathfinding.Samples
             _map.Dispose();
         }
 
-        public FixedList64<int> GetAvailableExits(int pIndex)
+        public void GetAvailableExits(int pIndex, NativeList<int> output)
         {
             int2 p = IndexToPos(pIndex);
-
-            var neighbours = new FixedList64<int>();
 
             for (int i = 0; i < Grid2D.Directions4Way.Length; ++i)
             {
@@ -94,10 +92,8 @@ namespace Sark.Pathfinding.Samples
                 if (!IsInBounds(adjPos) || !IsPathable(adjPos))
                     continue;
 
-                neighbours.Add(PosToIndex(adjPos.x, adjPos.y));
+                output.Add(PosToIndex(adjPos.x, adjPos.y));
             }
-
-            return neighbours;
         }
 
         public bool IsPathable(int2 p) =>
@@ -150,6 +146,10 @@ namespace Sark.Pathfinding.Samples
         public NativeArray<byte> GetData() => _map;
 
         public bool IsCreated => _map.IsCreated;
+
+        public TestMapInt2(int w, int h, Allocator allocator) :
+            this(new int2(w, h), allocator)
+        { }
 
         public TestMapInt2(int2 size, Allocator allocator)
         {
@@ -214,9 +214,8 @@ namespace Sark.Pathfinding.Samples
             _map.Dispose();
         }
 
-        public FixedList64<int2> GetAvailableExits(int2 p)
+        public void GetAvailableExits(int2 p, NativeList<int2> output)
         {
-            FixedList64<int2> neighbours = new FixedList64<int2>();
             for (int i = 0; i < Grid2D.Directions4Way.Length; ++i)
             {
                 int2 dir = Grid2D.Directions4Way[i];
@@ -225,10 +224,8 @@ namespace Sark.Pathfinding.Samples
                 if (!IsInBounds(adjPos) || !IsPathable(adjPos))
                     continue;
 
-                neighbours.Add(adjPos);
+                output.Add(adjPos);
             }
-
-            return neighbours;
         }
 
         public bool IsPathable(int2 pos)
@@ -251,5 +248,18 @@ namespace Sark.Pathfinding.Samples
         public int PosToIndex(int x, int z) => Grid2D.PosToIndex(x, z, _size.x);
         public int2 IndexToPos(int i) => Grid2D.IndexToPos(i, _size.x);
 
+        public static (TestMapInt2, int2, int2) GetMapWithObstacles(int w, int h, Allocator allocator)
+        {
+            var map = new TestMapInt2(w, h, allocator);
+
+            int x = w / 2;
+            for (int y = 0; y < h - 2; ++y)
+                map.SetTile(x, y, 1);
+
+
+            int start = map.PosToIndex(0, 0);
+            int end = map.PosToIndex(w - 1, 0);
+            return (map, start, end);
+        }
     }
 }

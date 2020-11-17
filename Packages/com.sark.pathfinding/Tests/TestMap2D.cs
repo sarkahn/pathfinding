@@ -71,10 +71,9 @@ namespace Sark.Pathfinding.Tests
             _map.Dispose();
         }
 
-        public FixedList64<int> GetAvailableExits(int pIndex)
+        public void GetAvailableExits(int pIndex, NativeList<int> output)
         {
             int2 p = IndexToPos(pIndex);
-            var neighbours = new FixedList64<int>();
 
             for (int i = 0; i < Grid2D.Directions4Way.Length; ++i)
             {
@@ -84,10 +83,8 @@ namespace Sark.Pathfinding.Tests
                 if (!IsInBounds(adjPos) || !IsPathable(adjPos))
                     continue;
 
-                neighbours.Add(PosToIndex(adjPos.x, adjPos.y));
+                output.Add(PosToIndex(adjPos.x, adjPos.y));
             }
-
-            return neighbours;
         }
 
         public bool IsPathable(int2 p) =>
@@ -183,9 +180,8 @@ namespace Sark.Pathfinding.Tests
             _map.Dispose();
         }
 
-        public FixedList64<int2> GetAvailableExits(int2 p)
+        public void GetAvailableExits(int2 p, NativeList<int2> output)
         {
-            FixedList64<int2> neighbours = new FixedList64<int2>();
             for (int i = 0; i < Grid2D.Directions4Way.Length; ++i)
             {
                 int2 dir = Grid2D.Directions4Way[i];
@@ -194,10 +190,8 @@ namespace Sark.Pathfinding.Tests
                 if (!IsInBounds(adjPos) || !IsPathable(adjPos))
                     continue;
 
-                neighbours.Add(adjPos);
+                output.Add(adjPos);
             }
-
-            return neighbours;
         }
 
         public bool IsPathable(int2 pos)

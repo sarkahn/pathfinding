@@ -7,7 +7,7 @@ namespace Sark.Pathfinding
 {
 	public interface IPathingMap<T> where T : unmanaged, IEquatable<T>
 	{
-		FixedList64<T> GetAvailableExits(T pos);
+		void GetAvailableExits(T pos, NativeList<T> output);
 		int GetCost(T a, T b);
 		float GetDistance(T a, T b);
     }

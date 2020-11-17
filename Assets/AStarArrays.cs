@@ -18,12 +18,14 @@ namespace Sark.Pathfinding
         NativePriorityQueue<int> _frontier;
         NativeArray<int> _parents;
         NativeArray<int> _costs;
+        NativeList<int> _neighbours;
 
         public AStarArrays(int len, Allocator allocator)
         {
             _frontier = new NativePriorityQueue<int>(len, allocator);
             _parents = new NativeArray<int>(len, allocator);
             _costs = new NativeArray<int>(len, allocator);
+            _neighbours = new NativeList<int>(len, allocator);
 
             Clear();
         }
@@ -43,11 +45,12 @@ namespace Sark.Pathfinding
                 if (curr.Equals(end))
                     break;
 
-                var neighbours = map.GetAvailableExits(curr);
+                _neighbours.Clear();
+                map.GetAvailableExits(curr, _neighbours);
 
-                for (int i = 0; i < neighbours.Length; ++i)
+                for (int i = 0; i < _neighbours.Length; ++i)
                 {
-                    var next = neighbours[i];
+                    var next = _neighbours[i];
 
                     int newCost = _costs[curr] + map.GetCost(curr, next);
 

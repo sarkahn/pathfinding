@@ -11,40 +11,40 @@ using UnityEngine.Profiling;
 
 public class VeryLongPathProfiling : MonoBehaviour
 {
-    AStar<int> _aStar;
-    AStarArrays _aStarArrays;
-    NativeList<int> _path;
-    TestMapInt _map;
+    AStar<int2> _aStar;
+    NativeList<int2> _path;
+    //AStarArrays _aStarArrays;
+    TestMapInt2 _map;
 
     [SerializeField]
     int2 _size = new int2(1000,1000);
 
-    int _start;
-    int _end;
+    int2 _start;
+    int2 _end;
 
     private void OnEnable()
     {
-        var (map,start,end) = TestMapInt.GetMapWithObstacles(
+        var (map,start,end) = TestMapInt2.GetMapWithObstacles(
             _size.x, _size.y, Allocator.Persistent);
 
         _map = map;
         _start = start;
         _end = end;
-        _aStar = new AStar<int>(_map.Length, Allocator.Persistent);
-        _aStarArrays = new AStarArrays(_map.Length, Allocator.Persistent);
-        _path = new NativeList<int>(_map.Length, Allocator.Persistent);
+        _aStar = new AStar<int2>(_map.Length, Allocator.Persistent);
+        //_aStarArrays = new AStarArrays(_map.Length, Allocator.Persistent);
+        _path = new NativeList<int2>(_map.Length, Allocator.Persistent);
     }
 
     // Update is called once per frame
     void Update()
     {
         _aStar.Clear();
-        _aStarArrays.Clear();
+        //_aStarArrays.Clear();
 
-        _path.Clear();
-        Profiler.BeginSample("AStar HashMap");
-        _aStarArrays.GetJob(_map, _start, _end, _path).Run();
-        Profiler.EndSample();
+        //_path.Clear();
+        //Profiler.BeginSample("AStar HashMap");
+        //_aStarArrays.GetJob(_map, _start, _end, _path).Run();
+        //Profiler.EndSample();
 
         _path.Clear();
         Profiler.BeginSample("AStar Arrays");
@@ -64,11 +64,11 @@ public class VeryLongPathProfiling : MonoBehaviour
     [BurstCompile]
     public struct PathJob : IJob
     {
-        public AStar<int> AStar;
-        public NativeList<int> Path;
-        public TestMapInt Map;
-        public int Start;
-        public int End;
+        public AStar<int2> AStar;
+        public NativeList<int2> Path;
+        public TestMapInt2 Map;
+        public int2 Start;
+        public int2 End;
 
         public void Execute()
         {
