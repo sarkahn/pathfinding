@@ -51,7 +51,6 @@ namespace Sark.Pathfinding.Tests
             for (int y = 0; y < h - 2; ++y)
                 map.SetTile(x, y, 1);
 
-
             int2 start = new int2(0, 0);
             int2 end = new int2(w - 1, 0);
             return (map, start, end);
