@@ -43,7 +43,7 @@ namespace Sark.Pathfinding.Tests
         /// <summary>
         /// Creates a map with a single wall in the middle
         /// </summary>
-        public static (TestMapInt2, int, int) GetInt2MapWithObstacles(int w, int h, Allocator allocator)
+        public static (TestMapInt2, int2, int2) GetInt2MapWithObstacles(int w, int h, Allocator allocator)
         {
             var map = new TestMapInt2(new int2(w,h), allocator);
 
@@ -52,8 +52,8 @@ namespace Sark.Pathfinding.Tests
                 map.SetTile(x, y, 1);
 
 
-            int start = map.PosToIndex(0, 0);
-            int end = map.PosToIndex(w - 1, 0);
+            int2 start = new int2(0, 0);
+            int2 end = new int2(w - 1, 0);
             return (map, start, end);
         }
     }
