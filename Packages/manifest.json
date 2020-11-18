@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "com.sark.common": "0.0.2",
-    "com.unity.burst": "1.4.1",
     "com.unity.collab-proxy": "1.3.9",
     "com.unity.collections": "0.14.0-preview.16",
     "com.unity.ide.rider": "2.0.7",
