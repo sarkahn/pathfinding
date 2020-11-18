@@ -1,3 +1,10 @@
+## [0.0.5](https://github.com/sarkahn/pathfinding/compare/v0.0.4...v0.0.5) (2020-11-18)
+
+
+### Bug Fixes
+
+* Needed to downgrade burst to 1.3.9 due to bug in 1.4.1 with pathfinding ([92691e4](https://github.com/sarkahn/pathfinding/commit/92691e4e57291d237e9d059a187e98fb88773bc6))
+
 ## [0.0.4](https://github.com/sarkahn/pathfinding/compare/v0.0.3...v0.0.4) (2020-11-17)
 
 
